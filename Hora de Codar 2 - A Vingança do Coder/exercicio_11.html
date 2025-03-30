@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora de Codar (Javascript) - Exercício 11</title>
+
+    <script>
+
+     alert("11. Uma micro calculadora")
+     alert("Escreva um programa para ler 2 valores inteiros informados pelo usuário e uma das seguintes operações a serem executadas (codificada da seguinte forma: 1. Adição, 2. Subtração, 3. Divisão, 4. Multiplicação). O programa deve calcular e escrever o resultado dessa operação sobre os dois valores lidos.") 
+     alert("Observação: Considere que só serão lidos os valores 1, 2, 3 ou 4 para as operações")
+
+     alert("Micro Calculadora!")
+
+     var valor1 = parseFloat(prompt("Para Começarmos, Informe-nos seu 1º Valor:"))
+     var valor2 = parseFloat(prompt("Agora, Informe-nos seu 2º e Último Valor:"))
+     var operacao = parseInt(prompt("E Então, Por Último, Digite o Código da Operação que Deseja Aplicar aos Seus Valores: ('1' - Adição | '2' - Subtração | '3' - Divisão | '4' - Multiplicação)"))
+
+     while (operacao < 1 || operacao > 4) {
+        alert("Código Inválido; Por Favor, Tente Novamente.")
+        operacao = parseInt(prompt("Digite o Código da Operação que Deseja Aplicar aos Seus Valores: ('1' - Adição | '2' - Subtração | '3' - Divisão | '4' - Multiplicação)"))
+     }
+
+     switch (operacao) {
+        case 1:
+           var resultado = valor1 + valor2;
+           document.write("A Adição de Seus Valores Equivale A: " + resultado + "!");
+           break;
+        case 2:
+           var resultado = valor1 - valor2;
+           document.write("A Subtração de Seus Valores Equivale A: " + resultado + "!");
+           break;
+        case 3:
+           if (valor2 == 0) {
+                alert("Operação Inválida; Não é Possível Dividir por Zero!")
+            } else {
+                var resultado = valor1 / valor2;
+                document.write("A Divisão de Seus Valores Equivale A: " + resultado + "!");
+           }
+           break;
+        case 4:
+           var resultado = valor1 * valor2;
+           document.write("A Multiplicação de Seus Valores Equivale A: " + resultado + "!");
+           break;   
+     }
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

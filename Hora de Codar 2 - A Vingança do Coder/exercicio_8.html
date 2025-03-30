@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora de Codar (Javascript) - Exercício 8</title>
+
+    <script>
+
+     alert("8. Escreva um programa que calcule a média de quatro números informados pelo usuário, mas somente se esses números forem maiores que 0 e menores que 10. No final, se a média for maior que cinco o usuário receberá uma mensagem 'Você passou no teste'. Em qualquer outra situação, ele receberá uma mensagem de 'tente novamente'")
+
+     var array_notas = [];
+     var soma = 0;
+     var contador = 1;
+
+     alert("Que Bom te Receber em Nossa Página do Aluno!~")
+     alert("Para Consultar sua Aprovação na Disciplina 'História da Confeitaria', Informe-nos as Quatro Notas de Seu Teste!")
+
+        while(contador < 5) {
+            var nota = parseFloat(prompt("Informe-nos a Sua " + contador + "ª Nota:"))
+            //"calcule a média (...) mas somente se esses números forem maiores que 0 e menores que 10."
+            while (nota < 0 || nota > 10) {
+                alert("Número Inválido; Tente Novamente.")
+                nota = parseFloat(prompt("Informe-nos a Sua " + contador + "ª Nota:"))
+            }
+            array_notas.push(nota);
+            soma += nota;
+            contador++;
+        }
+
+     var media = soma / 4;
+
+        if (media > 5) {
+            alert("Parabéns, Você Passou no Teste!~")
+        } else {
+            alert("Que Pena, Você Não Passou... Mas Não Desanime! Sempre se Pode Tentar Novamente!~")
+        }
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

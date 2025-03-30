@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora de Codar (Javascript) - Exercício 9</title>
+
+    <script>
+
+     alert("9. Escreva um programa para ler o ano de nascimento de uma pessoa e escrever uma mensagem que diga se ela poderá ou não votar este ano (não é necessário considerar o mês em que ela nasceu).")
+
+     var ano_atual = parseInt(prompt("Em Que Ano Estamos Agora?"))
+
+     while(ano_atual < 2025) {
+        alert("Ano Inválido; Tente Novamente.")
+        ano_atual = parseInt(prompt("Em Que Ano Estamos Agora?"))
+     }
+
+     var ano_nasc = parseInt(prompt("Em Que Ano Você Nasceu?"))
+
+     if (ano_nasc <= 2009) {
+        alert("Você Pode Votar Este Ano!")
+     } else {
+        alert("Você Não Pode Votar Este Ano!")
+     }
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

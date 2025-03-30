@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora de Codar (Javascript) - Exercício 10</title>
+
+    <script>
+
+     alert("10. Tendo como entrada a altura e o gênero designado ao nascer (codificado da seguinte forma: 1: feminino - 2: masculino - ) de uma pessoa, construa um programa que calcule e imprima seu peso ideal, utilizando as seguintes fórmulas.")
+
+     var altura = parseFloat(prompt("Qual É a Sua Altura?"))
+     var genero = parseInt(prompt("Qual É o Gênero que Lhe Foi Designado ao Nascer (Sexo)? (Digite '1' Para 'Feminino' ou '2' Para 'Masculino'):"))
+     if (genero == 1) {
+        document.write("Seu Peso Ideal Seria Equivalente A " + (((62.1 * altura) - 44.7).toFixed(2)) + " kg.")
+     } else if (genero == 2) {
+        document.write("Seu Peso Ideal Seria Equivalente A " + (((72.7 * altura) - 58).toFixed(2)) + " kg.")
+     } else {
+        document.write("YAAASSSSSSSSSS SLAY NON-BINARY DIVA!~~~~~")
+     }
+
+     //.toFixed() ⮕ Usado Para Definir o Número de Casas Decimais Que Queremos Mostrar Após a Vírgula. Neste Caso, Estamos Definindo Que Queremos Mostrar Apenas Duas Casas Decimais Após a Mesma. Isso É Útil Para Formatar Números Decimais de Forma 
+     //Mais Clara e Precisa.
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

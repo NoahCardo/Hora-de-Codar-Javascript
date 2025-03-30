@@ -14,7 +14,15 @@
      var terc_valor = parseFloat(prompt(""))
      var quart_valor = parseFloat(prompt(""))
 
-     
+     if (prim_valor > seg_valor && prim_valor > terc_valor && prim_valor > quart_valor) {
+       alert("Dentre os Números À Nós Informados...: O Primeiro Deles É " + prim_valor + ", O Último Deles É " + quart_valor + " E O Maior Deles É " + prim_valor + "!") 
+     } else if (seg_valor > prim_valor && seg_valor > terc_valor && seg_valor > quart_valor) {
+       alert("Dentre os Números À Nós Informados...: O Primeiro Deles É " + prim_valor + ", O Último Deles É " + quart_valor + " E O Maior Deles É " + seg_valor + "!") 
+     } else if (terc_valor > prim_valor && terc_valor > seg_valor && terc_valor > quart_valor) {
+       alert("Dentre os Números À Nós Informados...: O Primeiro Deles É " + prim_valor + ", O Último Deles É " + quart_valor + " E O Maior Deles É " + terc_valor + "!") 
+     } else if (quart_valor > prim_valor && quart_valor > seg_valor && quart_valor > terc_valor) {
+       alert("Dentre os Números À Nós Informados...: O Primeiro Deles É " + prim_valor + ", O Último Deles É " + quart_valor + " E O Maior Deles É " + quart_valor + "!") 
+     }
 
     </script>
 

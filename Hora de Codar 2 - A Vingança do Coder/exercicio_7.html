@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora de Codar (Javascript) - Exercício 7</title>
+
+    <script>
+
+     alert("7. Faça um programa que leia 6 números que o usuário vai informar. Todos os números lidos com valor inferior a 72 devem ser somados. Escreva o valor final da soma efetuada e também todos valores que o usuário informou.")
+
+     var array_numeros = []; //array_numeros = [] ⮕ Usado para Criar um Array (Lista) Vazia, Onde Poderemos Armazenar, Neste Caso, os Números que o Usuário Informar.
+     var soma = 0;
+     var contador = 1;
+
+     alert("Informe-nos Seis Números e Todos Aqueles com Valor Inferior a 72 Serão Somados!")
+
+        while (contador < 7) {
+            var numero = parseFloat(prompt("Informe o Seu " + contador + "º Número:"));
+            array_numeros.push(numero); //.push() ⮕ Usado para Adicionar um Novo Elemento ao Final de um Array (Lista).
+            if (numero <= 72) {
+                soma += numero;
+            }
+            contador++;
+        }
+     
+     document.write("A Soma de Seus Números Equivale À: " + soma + "!\n")  
+     document.write("(E Os Valores Informados por Você Foram, Respectivamente: " + array_numeros.join(", ") + ")")
+     //.join() ⮕ Usado para Unir Todos os Elementos de um Array (Lista) em uma Única String (Equivalente a uma Variável do Tipo "Cadeia" em Portugol; Para Textos). Ele Permite que Especifiquemos um Separador Entre os Elementos do Array, 
+     //Como uma Vírgula, um Espaço ou Qualquer Outro Caractere.
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>
