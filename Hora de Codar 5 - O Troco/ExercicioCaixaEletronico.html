@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora de Codar (Javascript) - Caixa Eletrônico</title>
+
+    <script>
+
+        //Variáveis Globais
+        var saldo = 100.5; //Float
+        var nome, senha; //Coloque o Nome que Bem Entender;
+        //Contudo, Para Brincar, Sua Senha É: "equipe5"!
+        var senha_sec = 3589; //Para Brincar, Sua Senha É: "3589"
+        var num_conta = 2201; //Para Brincar, o Número da Conta É: "2201"
+
+        function inicio() {
+
+            alert("Bem-Vindo(a/e) ao Sistema!~");
+            nome = prompt("Informe-nos o Seu Nome:");
+            senha = prompt("Informe-nos a Sua Senha:");
+
+            if (checa_login(senha)) {
+                alert("Login Efetuado com Sucesso!~");
+            } else {
+                alert("Login NÃO Efetuado. Por Favor, Tente Outra Vez...");
+                inicio();
+            }
+
+            alert("Olá " + nome + ", É um Prazer Ter Você Por Aqui!~");
+
+            // Menu de Opções
+            var opcao = parseInt(prompt("Escolha Uma Opção:\n1) Ver Saldo\n2) Ver Extrato\n3) Fazer Saque\n4) Fazer Depósito\n5) Fazer Transferência\n6) Sair."));
+
+            switch (opcao) {
+                case 1:
+                    valida_senha_sec(ver_saldo); // Verifica a Senha e, Se Correta, Chama ver_saldo
+                    break;
+
+                case 2:
+                    valida_senha_sec(ver_extrato); // Verifica a Senha e, Se Correta, Chama ver_extrato
+                    break;
+
+                case 5:
+                    valida_senha_sec(fazer_transferencia); // Verifica a Senha e, Se Correta, Chama fazer_transferencia
+                    break;
+
+                case 3:
+                    fazer_saque();
+                    break;
+
+                case 4:
+                    fazer_deposito();
+                    break;
+
+                case 6:
+                    sair();
+                    break;
+
+                default:
+                    erro();
+            }
+
+        }
+
+        function checa_login(senha) {
+
+            return senha === "equipe5"; //Login Válido
+
+        }
+
+        function valida_senha_sec(callback) {
+
+            var tentativas = 5;
+            while (tentativas > 0) {
+                var entrada_senha = parseInt(prompt("Para Prosseguir, Informe-nos a Sua Senha Secundária:"));
+
+                if (entrada_senha === senha_sec) {
+                    callback(); //Chama Diretamente a Função Passada (ver_saldo, ver_extrato, etc.)
+                    return;
+                } else {
+                    tentativas--;
+                    alert("Senha Incorreta; Restam " + tentativas + " Tentativa(s).");
+                }
+            }
+
+            //Após 3 Tentativas Incorretas...:
+            alert("Número máximo de tentativas atingido! Retornando ao menu inicial...");
+            inicio();
+
+        }
+
+        function ver_saldo() {
+
+            document.write("<h3>Seu saldo atual é: R$ " + saldo.toFixed(2) + "</h3>");
+
+        }
+
+        function ver_extrato() {
+
+            document.write("<h3>Extrato Bancário:</h3>");
+            document.write("<ul>");
+            document.write("<li>Figure Action Goro Majima: R$ 2159,00;</li>");
+            document.write("<li>Mochila de Fantasma: R$ 55,90;</li>");
+            document.write("<li>Kit Canetas Arco-Íris: R$ 18,90;</li>");
+            document.write("<li>Bloco de Notas: R$ 13,99;</li>");
+            document.write("<li>Nendoroid Reiner Braun: R$ 990,90.</li>");
+            document.write("</ul>");
+
+        }
+
+        function fazer_saque() {
+
+            var saque = parseFloat(prompt("Qual o valor para saque?"));
+
+            if (saque <= 0 || isNaN(saque)) {
+                alert("Operação não autorizada. Por favor, informe um número válido.");
+                fazer_saque();
+            } else if (saque > saldo) {
+                alert("Operação não autorizada.");
+                fazer_saque();
+            } else {
+                saldo -= saque;
+                ver_saldo();
+            }
+        }
+
+        function fazer_deposito() {
+
+            var deposito = parseFloat(prompt("Qual o valor para depósito?"));
+            //Not a Number (NaN)
+            if (deposito <= 0 || isNaN(deposito)) {
+                alert("Operação não autorizada. Por favor, informe um número válido.");
+                fazer_deposito();
+            } else {
+                saldo += deposito;
+                ver_saldo();
+            }
+        }
+
+        function fazer_transferencia() {
+
+            var conta = parseInt(prompt("Informe o número da conta para transferência:"));
+
+            if (conta !== num_conta) {
+                alert("Conta Não Encontrada; Por Favor, Tente Novamente...");
+                fazer_transferencia();
+            } else {
+                var valor_transf = parseFloat(prompt("Qual o valor para transferência?"));
+
+                if (valor_transf <= 0 || isNaN(valor_transf)) {
+                    alert("Operação não autorizada. Por favor, informe um número válido.");
+                    fazer_transferencia();
+                } else if (valor_transf > saldo) {
+                    alert("Operação não autorizada.");
+                    fazer_transferencia();
+                } else {
+                    saldo -= valor_transf;
+                    ver_saldo();
+                }
+            }
+        }
+
+        function sair() {
+            var confirma = confirm('Você deseja sair?' + nome + ', Foi um Prazer Ter Você por Aqui!~')
+            if (confirma) {
+                window.close();
+            } else {
+                inicio();
+            }
+        }
+
+        function erro() {
+            alert("Opção Inválida. Escolha uma das opções:\n1) Ver Saldo\n2) Ver Extrato\n3) Fazer Saque\n4) Fazer Depósito\n5) Fazer Transferência\n6) Sair.");
+            inicio();
+        }
+
+        inicio(); //Inicia o Sistema
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
