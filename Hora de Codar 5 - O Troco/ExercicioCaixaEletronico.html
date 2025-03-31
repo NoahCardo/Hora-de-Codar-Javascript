@@ -12,14 +12,14 @@
         var saldo = 100.5; //Float
         var nome, senha; //Coloque o Nome que Bem Entender;
         //Contudo, Para Brincar, Sua Senha É: "equipe5"!
-        var senha_sec = 3589; //Para Brincar, Sua Senha É: "3589"
+        var senha_sec = 3589; //Para Brincar, Sua Senha Secundária É: "3589"
         var num_conta = 2201; //Para Brincar, o Número da Conta É: "2201"
 
         function inicio() {
 
             alert("Bem-Vindo(a/e) ao Sistema!~");
             nome = prompt("Informe-nos o Seu Nome:");
-            senha = prompt("Informe-nos a Sua Senha:");
+            senha = prompt("Informe-nos a Sua Senha (//Para Brincar, Sua Senha É: 'equipe5'!):");
 
             if (checa_login(senha)) {
                 alert("Login Efetuado com Sucesso!~");
@@ -74,7 +74,7 @@
 
             var tentativas = 5;
             while (tentativas > 0) {
-                var entrada_senha = parseInt(prompt("Para Prosseguir, Informe-nos a Sua Senha Secundária:"));
+                var entrada_senha = parseInt(prompt("Para Prosseguir, Informe-nos a Sua Senha Secundária (//Para Brincar, Sua Senha Secundária É: '3589'!):"));
 
                 if (entrada_senha === senha_sec) {
                     callback(); //Chama Diretamente a Função Passada (ver_saldo, ver_extrato, etc.)
@@ -141,7 +141,7 @@
 
         function fazer_transferencia() {
 
-            var conta = parseInt(prompt("Informe o número da conta para transferência:"));
+            var conta = parseInt(prompt("Informe o número da conta para transferência (//Para Brincar, o Número da Conta É: '2201'):"));
 
             if (conta !== num_conta) {
                 alert("Conta Não Encontrada; Por Favor, Tente Novamente...");
