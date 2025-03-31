@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora de Codar (Javascript) - Exercício 10</title>
+
+    <script>
+
+     alert("10 - Escreva um programa em que o usuário informe 10 valores e escreva quantos desses valores lidos estão entre os números 24 e 42 (incluindo os valores 24 e 42) e quantos deles estão fora deste intervalo.")
+
+     var contador = 1
+     var dentro = 0
+     var fora = 0
+
+     alert("Informe-nos 10 Valores.")
+
+     while (contador < 11) {
+        var valor = parseInt(prompt("Informe-nos o " + contador + "º Valor:"))
+        if (valor >= 24 && valor <= 42) {
+            dentro++
+        } else {
+            fora++
+        }
+        contador++
+    }
+
+    document.write("Quantidade de Valores Dentro do Intervalo de 24 À 42: " + dentro + ".<br>Quantidade de Valores Fora do Intervalo de 24 À 42: " + fora + ".")
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

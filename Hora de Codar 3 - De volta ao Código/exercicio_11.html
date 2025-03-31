@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora de Codar (Javascript) - Exercício 11</title>
+
+    <script>
+
+     alert("11 - Escreva um programa para imprimir todas as tabuadas de 1 a N. N será informado pelo usuário.")
+
+     alert("Gerador de Tabuadas!")
+     
+     var valor_n = parseInt(prompt("Selecione o Número da Tabuada de Sua Escolha e Percorreremos Todas As Outras Até o Seu Encontro! Isto É: Como um Brinde, Lhe Exibiremos a Tabuada de Sua Preferência e Outras Delas! Experimente:"))
+
+     while (valor_n <= 0) {
+        alert("Valor Inválido. Por Favor, Tente Novamente.")
+        valor_n = parseInt(prompt("Selecione o Número da Tabuada de Sua Escolha:"))
+     }
+
+     var contador = 1
+
+     while (contador <= valor_n) {
+        document.write("<br>Tabuada do " + contador + ":<br>")
+        var multiplicador = 1 // Reseta o Multiplicador Para "1" a Cada Nova Tabuada
+        
+        while (multiplicador <= 10) {
+           var resultado = contador * multiplicador
+           document.write(contador + " x " + multiplicador + " = " + resultado + "<br>")
+           multiplicador++;
+        }
+
+     contador++;
+
+     }
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

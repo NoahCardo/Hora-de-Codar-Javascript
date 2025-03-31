@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora de Codar (Javascript) - Exercício 2</title>
+
+    <script>
+
+     alert("2 - Escreva um algoritmo para ler 2 valores informados pelo usuário e enquanto o segundo valor informado for igual ou menor que ZERO, deve ser lido um novo valor, mas para a mesma variável. Ou seja, para o segundo valor não pode ser aceito o valor zero nem um valor negativo.")    
+     alert("O seu programa deve imprimir o resultado da divisão do primeiro valor lido pelo segundo valor e exibir o resultado ao usuário.")
+
+     alert("Informe-nos Dois Valores para uma Divisão!")
+     var valor1 = parseFloat(prompt("Informe-nos um 1º Valor:"))
+     var valor2 = parseFloat(prompt("E, Agora, Informe-nos um 2º e Último Valor:"))
+
+     while (valor2 <= 0) {
+        alert("Valor Inválido. Não é Possível Dividir por Zero. Por Favor, Tente Novamente.")
+        valor2 = parseFloat(prompt("Informe-nos um 2º e Último Valor Válido:"))
+     }
+
+     var result_div = valor1 / valor2
+
+     document.write("O Resultado de Sua Divisão (" + valor1 + " ÷ " + valor2 + ") Equivale A: " + result_div + "!")
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

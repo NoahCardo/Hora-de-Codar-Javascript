@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora de Codar (Javascript) - Exercício 7</title>
+
+    <script>
+
+     alert("7 - Escreva um algoritmo para ler as notas de avaliações de um aluno, calcule e imprima a média (simples) desse aluno. Só devem ser aceitos valores válidos durante a leitura (0 a 10) para cada nota. São 6 notas ao total. Caso o valor informado para qualquer uma das notas esteja fora do limite estabelecido, deve ser solicitado um novo valor ao usuário.")
+
+     var array_notas = [];
+     var soma = 0;
+     var contador = 1;
+
+     alert("Que Bom te Receber em Nossa Página do Aluno!~")
+     alert("Informe-nos as Seis Notas de Suas Avaliações na Disciplina 'História da Confeitaria' e Lhe Exibiremos Sua Média!")
+
+        while(contador < 7) {
+            var nota = parseFloat(prompt("Informe-nos sua " + contador + "ª Nota:"))
+             //⬆ "(...) Só devem ser aceitos valores válidos durante a leitura (0 a 10) para cada nota. (...)" ⬆
+            while (nota < 0 || nota > 10) {
+                alert("Número Inválido; Tente Novamente.")
+                nota = parseFloat(prompt("Informe-nos sua " + contador + "ª Nota:"))
+            }
+            array_notas.push(nota);
+            soma += nota;
+            contador++;
+        }
+
+     var media = soma / 6;
+
+     alert("Sua Média Nas Avaliações Desta Disciplina Equivale A: " + media + "!")   
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

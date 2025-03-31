@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora de Codar (Javascript) - Exercício 6</title>
+
+    <script>
+
+     alert("6 - Escreva um programa para ler 2 notas de um aluno, calcular e imprimir a média final. Considere que a nota de aprovação é 9,5. Logo após escrever a mensagem 'Calcular a média de outro aluno Sim/Não?' e solicitar um resposta. Se a resposta for 'S', o programa deve ser executado novamente, caso contrário deve ser encerrado exibindo a quantidade de alunos aprovados.")
+
+     var array_notas = [];
+     var aprovados = 0;
+     var opcao;
+
+    function consulta() {
+
+     alert("Que Bom te Receber, Educador(a/e)!~")
+     alert("Para Consultar a Aprovação de Seus Alunos na Disciplina 'História da Confeitaria', Informe-nos as Duas Notas que Estes Obtiveram em Seus Testes!")
+
+     var contador = 1;
+     var soma = 0;
+
+        while (contador < 3) {
+            var nota = parseFloat(prompt("Informe-nos a " + contador + "ª Nota Deste(a) Aluno(a/e):"))
+            while (nota < 0 || nota > 10) {
+                alert("Número Inválido; Tente Novamente.")
+                nota = parseFloat(prompt("Informe-nos a " + contador + "ª Nota Deste(a) Aluno(a/e):"))
+            }
+            array_notas.push(nota);
+            soma += nota;
+            contador++;
+        }
+
+     var media = soma / 2
+
+     if (media >= 9.5) {
+         alert("Aprovado(a/e)!~")
+         aprovados++;
+     } else {
+         alert("Reprovado(a/e)...")
+     }
+
+     opcao = prompt("Calcular a Média de Outro Aluno? (Digite 'S' Para 'Sim' ou 'N' Para 'Não')")
+
+     if (opcao == "S" || opcao == "s") {
+         consulta()
+     } else if (opcao == "N" || opcao == "n") {
+         alert("(Quantidade de Alunos Aprovados: " + aprovados + ")")
+     }
+    
+    }
+    
+    consulta()
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>
