@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora de Codar (Javascript) - Exercício 3</title>
+
+    <script>
+
+     alert("3. Vamos criar uma lista de compras. Crie uma array de frutas, exiba-a ao usuário e, em seguida, peça ao usuário para digitar o nome de uma das frutas. Caso a fruta esteja no array, remova-a e exiba a mensagem 'Fruta foi retirada da lista'. Peça novamente para o usuário digitar o nome de uma fruta para ser removida. Sempre que o usuário procurar por uma fruta que não está no array exiba a mensagem 'Fruta indisponível no nosso mercado'. Quando o array não possuir mais itens dentro de si, escreva 'Lista de compras finalizada'.")
+
+     alert("Lista de Compras!")
+
+     var array_frutas = ["Maçã", "Laranja", "Uva", "Pera", "Manga", "Morango"]
+
+     var opcao = prompt("Estas São as Seguintes Frutas Presentes no Nosso Mercado: " + array_frutas.join(", ") + "!\nSinta-se À Vontade!~ Por Favor, Digite o Nome de Uma Delas...:")
+
+     //⬇ array_frutas.includes(opcao) - Verifica se o Elemento Está Incluso na Array ⬇
+     if (array_frutas.includes(opcao)) {
+        array_frutas.splice(array_frutas.indexOf(opcao), 1); //array_frutas.splice(0, 1) - Remove o Elemento da Array; array_frutas.indexOf(opcao) - Verifica o Índice do Elemento na Array
+        alert("A Fruta " + opcao + " Foi Retirada da Lista!");
+     } else {
+        alert("Fruta Indisponível no Nosso Mercado.");
+     }
+
+     while (array_frutas.length > 0) {
+        opcao = prompt("Estas São as Seguintes Frutas Ainda Presentes no Nosso Mercado: " + array_frutas.join(", ") + "!\nSinta-se À Vontade!~ Por Favor, Digite o Nome de Outra Delas...:")
+        if (array_frutas.includes(opcao)) {
+            array_frutas.splice(array_frutas.indexOf(opcao), 1); //array_frutas.splice(0, 1) - Remove o Elemento da Array; array_frutas.indexOf(opcao) - Verifica o Índice do Elemento na Array
+            alert("A Fruta " + opcao + " Foi Retirada da Lista!");
+        } else {
+            alert("Fruta Indisponível no Nosso Mercado.");
+        }
+     }
+
+     alert("Lista de Compras Finalizada!~")
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

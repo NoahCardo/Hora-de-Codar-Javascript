@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora de Codar (Javascript) - Exercício 1</title>
+
+    <script>
+
+     alert("1. Crie um programa onde o usuário possa cadastrar estudantes sem limites, e, em seguida, Se o usuário digitar 'PARE' o programa deve exibir a quantidade de estudantes cadastrados e a lista com cada um deles.")
+
+     var array_estud = []
+     var estud_cadastr = 0
+     var opcao
+
+     alert("Que Bom te Receber, Educador(a/e)!~")
+     alert("Pronto para Cadastrar Estudantes? Pois Bem... Vamos Começar!~")
+
+     contador = 1
+
+        while (opcao != "PARE" || opcao != "pare") {
+            var estudante = (prompt("Informe-nos o Nome de Seu/Sua/Sue " + contador + "º Estudante:"))
+            array_estud.push(estudante);
+            contador++;
+            estud_cadastr++;
+            opcao = prompt("Se Quiser Parar de Cadastrar Estudantes, Digite 'PARE'; Senão, Digite Qualquer Outra Coisa Para Continuar Cadastrando!")
+            if (opcao == "PARE" || opcao == "pare") {
+                break;
+            } else {
+                alert("Continuemos Então!~")
+            }
+        }
+
+     document.write("<h3>Quantidade de Estudantes Cadastrados: " + estud_cadastr + "; Estes São, Respectivamente...: " + array_estud.join(", ") + "!</h3>")
+    
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

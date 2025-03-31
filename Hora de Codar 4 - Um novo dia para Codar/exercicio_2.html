@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora de Codar (Javascript) - Exercício 2</title>
+
+    <script>
+
+     alert("2. Crie uma array de planetas que inclua 'Terra', 'Marte', 'Plutão', 'Vênus', 'Júpiter', 'Saturno'  e, em seguida, peça ao usuário para digitar o nome de um planeta. Verifique se o planeta que o usuário informou está na array e informe ao usuário.")
+
+     var array_planetas = ["Terra", "Marte", "Plutão", "Vênus", "Júpiter", "Saturno"]
+
+     var planeta = prompt("Digite o Nome de um dos Planetas Presentes em Nosso Sistema Solar e Lhe Diremos Se Ele Está ou Não em Nossa Lista!~")
+
+     //⬇ array_planetas.includes(planeta) - Verifica se o Elemento Está Incluso na Array ⬇
+     if (array_planetas.includes(planeta)) {
+        document.write("O Planeta " + planeta + ", Sugerido Por Ti, Está Presente em Nossa Lista!");
+     } else {
+        document.write("O Planeta " + planeta + ", Sugerido Por Ti, Não Está Presente em Nossa Lista...");
+     }
+     
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>
