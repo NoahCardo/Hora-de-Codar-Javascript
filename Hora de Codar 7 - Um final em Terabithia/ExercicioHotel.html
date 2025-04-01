@@ -3,11 +3,25 @@
 <head>
 
 	<script>
-	
+
+		var nome, senha; //Coloque o Nome que Bem Entender;
+        //Contudo, Para Brincar, Sua Senha É: "2678"!
 
 		function inicio() {
 
-			var escolha = parseInt(prompt('Selecione uma opção 1.) Reserva de Quartos 2.) Cadastro de Hóspedes 3.) Abastecimento de Carros 4.) Sair'));
+            alert('Bem-Vindo(a/e) ao Hotel Hazbin!~')
+
+			nome = prompt("Informe-nos o Seu Nome:")
+			senha = prompt("Informe-nos a Sua Senha (//Para Brincar, Sua Senha É: '2678')")
+
+            if (checa_login(senha)) {
+                alert("Login Efetuado com Sucesso!~");
+            } else {
+                alert("Login NÃO Efetuado. Por Favor, Tente Outra Vez...");
+                inicio();
+            }
+			
+			var escolha = parseInt(prompt('Bem-Vindo(a/e) ao Hotel Hazbin, ' + nome + '!~\nSelecione uma opção \n1.) Reserva de Quartos \n2.) Cadastro de Hóspedes \n3.) Abastecimento de Carros \n4.) Sair'));
 
 			if (escolha === 1) {
 				reserva_quartos();
@@ -20,20 +34,26 @@
 			} else {
 				erro();
 			}
-		}		
+		}
+
+		function checa_login(senha) {
+
+			return senha === "2678"; //Login Válido
+
+		}
 
 		function reserva_quartos() {
-			alert('HOTEL {NOME DO HOTEL} - RESERVA DE QUARTOS');
+			alert('HOTEL HAZBIN - RESERVA DE QUARTOS');
 			inicio();
 		}
 
 		function cadastro_hospedes() {
-			alert('HOTEL {NOME DO HOTEL} - CADASTRO DE HÓSPEDES');
+			alert('HOTEL HAZBIN - CADASTRO DE HÓSPEDES');
 			inicio();
 		}
 
 		function abastecer_carros() {
-			alert('HOTEL {NOME DO HOTEL} - ABASTECER');
+			alert('HOTEL HAZBIN - ABASTECER');
 			inicio();
 		}
 
@@ -51,8 +71,8 @@
 			}
 		}
 
-		
-		
+
+
 		inicio();
 	</script>
 </head>
