@@ -6,24 +6,29 @@
 
 		var nome, senha; //Coloque o Nome que Bem Entender;
         //Contudo, Para Brincar, Sua Senha É: "2678"!
-		var quartos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+		var calculo; //Para Calcular o Valor da Hospedagem!
+		
+        let array_hosp = []
+
+		let array_quartos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] //Função "let": utilizada para declarar 
+		//variáveis que podem ser alteradas posteriormente, enquanto "const" é utilizada para declarar variáveis que não podem ser alteradas. 
+		//Neste caso, "quartos" é uma variável que pode ser alterada, pois representa os números dos quartos disponíveis no hotel.
 
 		function inicio() {
 
-            alert('Bem-Vindo(a/e) ao HOTEL HAZBIN!~')
+            alert('Bem-Vindo(a/e) ao HAZBIN HOTEL!~')
 
 			nome = prompt("Informe-nos o Seu Nome:")
 			senha = prompt("Informe-nos a Sua Senha (//Para Brincar, Sua Senha É: '2678')")
 
-            if (checa_login(senha)) {
-                alert("Login Efetuado com Sucesso!~");
-            } else {
-                alert("Login NÃO Efetuado. Por Favor, Tente Outra Vez...");
-                inicio();
-            }
+            while (senha != 2678) {
+                senha = prompt("Login NÃO Efetuado. Por Favor, Tente Outra Vez... (//Para Brincar, Sua Senha É: '2678')")
+			}
+
+			alert("Login Efetuado com Sucesso!~")
 			
 			//Menu de Opções
-			var escolha = parseInt(prompt('Bem-Vindo(a/e) ao HOTEL HAZBIN, ' + nome + ', É um Imenso Prazer Ter Você por Aqui!~\nSelecione uma opção \n1.) Reserva de Quartos \n2.) Cadastro de Hóspedes \n3.) Abastecimento de Carros \n4.) Sair'));
+			var escolha = parseInt(prompt('Bem-Vindo(a/e) ao HAZBIN HOTEL, ' + nome + ', É um Imenso Prazer Ter Você por Aqui!~\nSelecione uma Opção: \n1.) Reserva de Quartos \n2.) Cadastro de Hóspedes \n3.) Abastecimento de Carros \n4.) Sair'));
 
             switch (escolha) {
 				case 1:
@@ -39,29 +44,50 @@
 					sair();
 				break;
 				default:
-					erro();			
+					erro();
 			}
 
 		}
 
-		function checa_login(senha) {
-
-			return senha === "2678"; //Login Válido
-
-		}
-
 		function reserva_quartos() {
-			alert('HOTEL HAZBIN - RESERVA DE QUARTOS');
+			alert('HAZBIN HOTEL - RESERVA DE QUARTOS');
+
+            var valor_diar = parseFloat(prompt("Qual o Valor Padrão da Diária?"))
+
+			while (valor_diar <= 0 || valor_diar < 50 || valor_diar > 1500) {
+				valor_diar = prompt("Valor Inválido, " + nome + "; Por Favor, Tente Outra Vez...")
+			}
+
+            var quant_dias = parseInt(prompt("Quantas Diárias Serão Necessárias?"))
+
+			while(quant_dias <= 0 || quant_dias > 30) {
+				quant_dias = prompt("Valor Inválido, " + nome + "; Por Favor, Tente Outra Vez...")
+			}
+
+            calculo = valor_diar * quant_dias;
+
+			var nome_hospede = String(prompt("O Valor de " + quant_dias + " Dias de Hospedagem É de R$" + calculo + "!\nAgora, Informe-nos: Qual É o Nome do Hóspede?"))
+
+            
+
+			var escolha_quartos = parseInt(prompt("Qual o Quarto Para Reserva? (1 - 20)\n(Quartos Disponíveis: " + array_quartos.join(", ") + ")"))
+
+			while (escolha_quartos < 1 || escolha_quartos > 20) {
+				escolha_quartos = prompt("Valor Inválido, " + nome + "; Por Favor, Tente Outra Vez...")
+			}
+
+            
+
 			inicio();
 		}
 
 		function cadastro_hospedes() {
-			alert('HOTEL HAZBIN - CADASTRO DE HÓSPEDES');
+			alert('HAZBIN HOTEL - CADASTRO DE HÓSPEDES');
 			inicio();
 		}
 
 		function abastecer_carros() {
-			alert('HOTEL HAZBIN - ABASTECER');
+			alert('HAZBIN HOTEL - ABASTECER');
 			inicio();
 		}
 
@@ -73,7 +99,7 @@
 		function sair() {
 			var confirma = confirm('Você deseja sair?');
 			if (confirma) {
-				alert('Muito Obrigado a Até Logo,' + nome + '!')
+				alert('Muito Obrigado e Até Logo,' + nome + '!')
 				window.close();
 			} else {
 				inicio();
