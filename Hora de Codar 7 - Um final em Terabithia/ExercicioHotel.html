@@ -5,85 +5,286 @@
 	<script>
 
 		var nome, senha; //Coloque o Nome que Bem Entender;
-        //Contudo, Para Brincar, Sua Senha É: "2678"!
-		var calculo; //Para Calcular o Valor da Hospedagem!
-		
-        let array_hosp = []
+		//Contudo, Para Brincar, Sua Senha É: "2678"!
+		var calculo = 0; //Para Calcular o Valor da Hospedagem!
 
-		let array_quartos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] //Função "let": utilizada para declarar 
-		//variáveis que podem ser alteradas posteriormente, enquanto "const" é utilizada para declarar variáveis que não podem ser alteradas. 
-		//Neste caso, "quartos" é uma variável que pode ser alterada, pois representa os números dos quartos disponíveis no hotel.
+		let contador = 0;
+
+		let array_hosp = [] //Função "let": utilizada para declarar variáveis que podem ser alteradas posteriormente,
+		//enquanto "const" é utilizada para declarar variáveis que não podem ser alteradas.
+
+		let quartos = new Array(20).fill(true); //new Array(20) cria um novo array com 20 elementos, e .fill(true)
+		//preenche todos esses elementos com o valor true.
+
+		var valor_diar, quant_dias, nome_hospede;
 
 		function inicio() {
 
-            alert('Bem-Vindo(a/e) ao HAZBIN HOTEL!~')
+			alert('👹🌈🔥 Bem-Vindo(a/e) ao HAZBIN HOTEL!~ 👹🌈🔥')
 
 			nome = prompt("Informe-nos o Seu Nome:")
 			senha = prompt("Informe-nos a Sua Senha (//Para Brincar, Sua Senha É: '2678')")
 
-            while (senha != 2678) {
-                senha = prompt("Login NÃO Efetuado. Por Favor, Tente Outra Vez... (//Para Brincar, Sua Senha É: '2678')")
+			while (senha != 2678) {
+				senha = prompt("Login NÃO Efetuado. Por Favor, Tente Outra Vez... (//Para Brincar, Sua Senha É: '2678')")
 			}
 
 			alert("Login Efetuado com Sucesso!~")
-			
+
 			//Menu de Opções
 			var escolha = parseInt(prompt('Bem-Vindo(a/e) ao HAZBIN HOTEL, ' + nome + ', É um Imenso Prazer Ter Você por Aqui!~\nSelecione uma Opção: \n1.) Reserva de Quartos \n2.) Cadastro de Hóspedes \n3.) Abastecimento de Carros \n4.) Sair'));
 
-            switch (escolha) {
+			switch (escolha) {
 				case 1:
 					reserva_quartos();
-				break;
+					break;
 				case 2:
-					cadastro_hospedes();
-				break;
+					sistema_cadastrar_hospedes();
+					break;
 				case 3:
 					abastecer_carros();
-				break;
+					break;
 				case 4:
 					sair();
-				break;
+					break;
+				case 5:
+					eventos_hazbin();
 				default:
 					erro();
 			}
 
 		}
 
+		function listar_quartos() {
+			let status = "Lista de Quartos e Suas Ocupações:\n\n";
+			for (let contador = 0; contador < quartos.length; contador++) {
+				status += `Quarto ${contador + 1}: ${quartos[contador] ? "Livre" : "Ocupado"}\n`;
+			}
+			return status;
+		}
+
+		//for é uma estrutura de repetição que executa um bloco de código por um número específico de vezes.
+		//A estrutura for é composta por três partes: inicialização, condição e incremento/decremento.
+
+		//As chamadas template strings (ou template literals) são uma forma de interpolar variáveis e expressões dentro
+		//de strings, usando crase (`) em vez de aspas simples ou duplas. Elas permitem incluir expressões ou variáveis
+		//diretamente na string, sem a necessidade de concatenar valores usando o operador +.
+		//O símbolo ${} é usado para indicar onde a variável ou expressão deve ser inserida.
+		//Por exemplo, ao invés de fazer: "Olá, " + nome + "!"; se pode fazer: `Olá, ${nome}!`.
+
 		function reserva_quartos() {
 			alert('HAZBIN HOTEL - RESERVA DE QUARTOS');
 
-            var valor_diar = parseFloat(prompt("Qual o Valor Padrão da Diária?"))
+			valor_diar = parseFloat(prompt("Qual o Valor Padrão da Diária?"))
 
-			while (valor_diar <= 0 || valor_diar < 50 || valor_diar > 1500) {
-				valor_diar = prompt("Valor Inválido, " + nome + "; Por Favor, Tente Outra Vez...")
+			while (valor_diar <= 0 || valor_diar < 50 || valor_diar > 70 || valor_diar === "" || isNaN(valor_diar)) {
+				valor_diar = parseFloat(prompt("Valor Inválido, " + nome + "; Por Favor, Tente Outra Vez..."))
 			}
 
-            var quant_dias = parseInt(prompt("Quantas Diárias Serão Necessárias?"))
+			quant_dias = parseInt(prompt("Quantas Diárias Serão Necessárias?"))
 
-			while(quant_dias <= 0 || quant_dias > 30) {
-				quant_dias = prompt("Valor Inválido, " + nome + "; Por Favor, Tente Outra Vez...")
+			while (quant_dias <= 0 || quant_dias > 30 || quant_dias === "" || isNaN(quant_dias)) {
+				quant_dias = parseInt(prompt("Valor Inválido, " + nome + "; Por Favor, Tente Outra Vez..."))
 			}
 
-            calculo = valor_diar * quant_dias;
+			calculo = valor_diar * quant_dias;
 
-			var nome_hospede = String(prompt("O Valor de " + quant_dias + " Dias de Hospedagem É de R$" + calculo + "!\nAgora, Informe-nos: Qual É o Nome do Hóspede?"))
+			nome_hospede = String(prompt("O Valor de " + quant_dias + " Dias de Hospedagem É de R$" + calculo.toFixed(2) + "!\nAgora, Informe-nos: Qual É o Nome do Hóspede?"))
 
-            
+			//toFixed() é um método usado para formatar um número com um número específico de casas decimais.
 
-			var escolha_quartos = parseInt(prompt("Qual o Quarto Para Reserva? (1 - 20)\n(Quartos Disponíveis: " + array_quartos.join(", ") + ")"))
-
-			while (escolha_quartos < 1 || escolha_quartos > 20) {
-				escolha_quartos = prompt("Valor Inválido, " + nome + "; Por Favor, Tente Outra Vez...")
+			while (nome_hospede === "" || Number(nome_hospede)) {
+				nome_hospede = String(prompt("Por Favor, Informe-nos um Nome!"))
 			}
 
-            
+			array_hosp.push(nome_hospede) //.push() é um método usado para adicionar um ou mais elementos ao final de um array, retornando o novo comprimento do mesmo.
+
+			quartos_escolh = parseInt(prompt("Qual o Quarto Para Reserva? (1 - 20)\n\n" + listar_quartos()))
+
+			while (quartos_escolh < 1 || quartos_escolh > 20 || quartos_escolh === "" || isNaN(quartos_escolh)) {
+				quartos_escolh = parseInt(prompt("Valor Inválido, " + nome + "; Por Favor, Tente Outra Vez...\n\n" + listar_quartos()))
+			}
+
+			//a diferença entre == e === é relacionada ao nível de comparação. == (igualdade simples) apenas compara o
+			//conteúdo, ignorando os tipos dos mesmos; enquanto === (igualdade estrita) compara tanto o conteúdo
+			//quanto o tipo destes. Isso significa que, caso usemos == em uma comparação entre 0 e "0", estes seriam
+			//considerados iguais; no entanto, com ===, estes não seriam.
+
+			//Verificação da Ocupação dos Quartos
+			while (!quartos[quartos_escolh - 1]) { //Se for `false`, está ocupado
+				quartos_escolh = parseInt(prompt("Este Quarto Já Está Ocupado! Por Favor, Escolha Outro.\n\n" + listar_quartos()));
+			}
+
+			alert("Quarto Livre.")
+
+			var confirmacao = String(prompt(nome + ", Você Confirma a Hospedagem de " + nome_hospede + " no Quarto " + quartos_escolh +
+				" por " + quant_dias + " Dias e por R$" + calculo.toFixed(2) + "? (Digite 'S' para 'Sim' ou 'N' para 'Não')")).toLowerCase();
+			//.toLowerCase() converte a string para letras minúsculas.
+
+			if (confirmacao === "s") {
+				//Marca o Quarto como Ocupado e Confirma a Reserva
+				quartos[quartos_escolh - 1] = false;
+				alert(`${nome}, Reserva Efetuada com Sucesso para ${nome_hospede}! O Quarto ${quartos_escolh} Agora Está Ocupado.\n\n` + listar_quartos());
+			} else if (confirmacao === "n") {
+				alert("Reserva Cancelada!");
+				inicio();
+			}
 
 			inicio();
 		}
 
+		function sistema_cadastrar_hospedes() {
+			var escolha_hospedes = parseInt(prompt('Selecione uma Opção: \n1. Cadastrar \n2. Pesquisar \n3. Listar \n4. Sair'));
+
+			if (escolha_hospedes === 1) {
+				cadastro_hospedes();
+			} else if (escolha_hospedes === 2) {
+				pesquisar_hospedes();
+			} else if (escolha_hospedes === 3) {
+				alert('👹🌈🔥 Lista de Hóspedes do HAZBIN HOTEL 👹🌈🔥:\n\n' + array_hosp.join('\n'));
+				sistema_cadastrar_hospedes();
+			} else if (escolha_hospedes === 4) {
+				inicio();
+			} else {
+				escolha_hospedes = parseInt(prompt('Por Favor, Informe-nos um Número Entre 1 e 4. \n\n Selecione uma Opção: \n1. Cadastrar \n2. Pesquisar \n3. Listar \n4. Sair'));
+			}
+		}
+
 		function cadastro_hospedes() {
 			alert('HAZBIN HOTEL - CADASTRO DE HÓSPEDES');
-			inicio();
+
+			let gratuidade = 0;
+			let meia = 0;
+			var opcao_cadastr;
+
+			valor_diar = parseFloat(prompt("Qual o Valor Padrão da Diária?"))
+
+			while (valor_diar <= 0 || valor_diar < 50 || valor_diar > 70 || valor_diar === "" || isNaN(valor_diar)) {
+				valor_diar = parseFloat(prompt("Valor Inválido, " + nome + "; Por Favor, Tente Outra Vez..."))
+			}
+
+			let valor_fixo = valor_diar;
+
+			while (array_hosp.length <= 14) { //Limite de 15 Hóspedes
+
+				nome_hospede = String(prompt("Qual o Nome do Hóspede?"))
+
+				while (nome_hospede === "" || Number(nome_hospede)) {
+					nome_hospede = String(prompt("Por Favor, Informe-nos um Nome!"))
+				}
+
+				var idade_hospede = parseInt(prompt("Qual a Idade do Hóspede?"))
+
+				while (idade_hospede < 0 || idade_hospede > 120 || idade_hospede === "" || isNaN(idade_hospede)) {
+					idade_hospede = parseInt(prompt("Valor Inválido, " + nome + "; Por Favor, Tente Outra Vez..."))
+				}
+
+				if (idade_hospede <= 6) {
+					alert(nome_hospede + " Cadastrado(a/e) com Sucesso! " + nome_hospede + " Possui Gratuidade!")
+					gratuidade++
+					array_hosp.push(nome_hospede)
+				} else if (idade_hospede >= 60) {
+					alert(nome_hospede + " Cadastrado(a/e) com Sucesso! " + nome_hospede + " Paga Meia!")
+					meia++
+					calculo += valor_fixo / 2
+					array_hosp.push(nome_hospede)
+				} else {
+					alert(nome_hospede + " Cadastrado(a/e) com Sucesso!")
+					calculo += valor_fixo
+					array_hosp.push(nome_hospede)
+				}
+
+				opcao_cadastr = String(prompt("Deseja Cadastrar Outro Hóspede? (Digite 'S' para 'Sim' ou 'N' para 'Não')")).toLowerCase();
+
+				if (opcao_cadastr === "s") {
+					continue;
+				} else if (opcao_cadastr === "n") {
+					alert(nome + ", O Valor Total das Hospedagens Equivale A: R$" + calculo.toFixed(2) + "!\n" +
+						"Quantidade de Hóspedes a Pagar com Gratuidade: " + gratuidade + ";\n" +
+						"Quantidade de Hóspedes a Pagar Meia: " + meia + ".");
+					sistema_cadastrar_hospedes();
+				}
+
+			}
+
+			alert("Máximo de Cadastros Atingido!")
+
+			alert(nome + ", O Valor Total das Hospedagens Equivale A: R$" + calculo.toFixed(2) + "!\n" +
+				"Quantidade de Hóspedes a Pagar com Gratuidade: " + gratuidade + ";\n" +
+				"Quantidade de Hóspedes a Pagar Meia: " + meia + ".");
+
+			sistema_cadastrar_hospedes();
+		}
+
+		function eventos_hazbin() {
+			alert('HAZBIN HOTEL - EVENTOS');
+
+			let aud_laranja = 150;
+			var max_cadeiras = 70;
+			let aud_colorado = 350;
+
+			var quant_conv = parseInt(prompt("Qual o Número de Convidados Para o Seu Evento?"))
+
+			while (quant_conv <= 0 || quant_conv > 350 || quant_conv === "" || isNaN(quant_conv)) {
+				quant_conv = parseInt(prompt("Quantidade de Convidados Inválida, Inferior ou Superior À Capacidade Máxima do Auditório; Por Favor, Tente Outra Vez...\nQual o Número de Convidados Para o Seu Evento?"))
+			}
+
+			if (quant_conv <= aud_laranja) {
+				alert("Use o Auditório 🍊 Laranja 🍊; Ele É o Mais Apropriado Para o Seu Evento!")
+			} else if (quant_conv > aud_laranja && quant_conv <= aud_laranja + max_cadeiras) {
+				let cadeiras_extras = quant_conv - aud_laranja;
+				alert("Use o Auditório 🍊 Laranja 🍊; Ele É o Mais Apropriado Para o Seu Evento! (Inclua Mais " + cadeiras_extras + " Cadeiras)")
+			} else if (quant_conv > aud_laranja && quant_conv <= aud_colorado) {
+				alert("Use o Auditório 🫧 Colorado 🫧; Ele É o Mais Apropriado Para o Seu Evento!")
+			}
+
+			alert("Agora Vamos Ver a Agenda do Evento?")
+
+			agenda_eventos();
+		}
+
+		function agenda_eventos() {
+			alert('HAZBIN HOTEL - AGENDA DE EVENTOS');
+
+			let dias_uteis = ["segunda", "terça", "quarta", "quinta", "sexta"];
+			let dias_finalds = ["sabado", "domingo"];
+
+			var dia_escolhido = String(prompt("Qual o Dia do Seu Evento? (Digite o Dia da Semana)")).toLowerCase();
+
+			while (!dias_uteis.includes(dia_escolhido) || !dias_finalds.includes(dia_escolhido) || dia_escolhido === "" || Number(dia_escolhido)) {
+				dia_escolhido = String(prompt("Dia Inválido, " + nome + "; Por Favor, Tente Outra Vez...\nQual o Dia do Seu Evento? (Digite o Dia da Semana)")).toLowerCase();
+			}
+
+			var horario_escolhido = parseInt(prompt("Qual o Horário do Seu Evento? (Despreze Minutos e Segundos)"))
+
+			if (dias_uteis.includes(dia_escolhido) && horario_escolhido >= 7 && horario_escolhido < 23) {
+				alert("O Dia do Seu Evento É um Dia Útil e o Horário Está Disponível!")
+			}
+
+
+
+
+
+		}
+
+
+
+		function pesquisar_hospedes() {
+			alert('HAZBIN HOTEL - PESQUISA DE HÓSPEDES');
+
+			nome_hospede = prompt('Qual o Nome do(a/e) Hóspede? Por Favor, Informe-o para Pesquisa:');
+
+			while (nome_hospede === "" || Number(nome_hospede)) {
+				nome_hospede = String(prompt("Por Favor, Informe-nos um Nome!"))
+			}
+
+			if (array_hosp.includes(nome_hospede)) {
+				alert('Hóspede ' + nome_hospede + ' foi Encontrado(a/e) com Sucesso!')
+				sistema_cadastrar_hospedes();
+			} else {
+				alert('Hóspede ' + nome_hospede + ' Não foi Encontrado(a/e)!')
+			}
+			sistema_cadastrar_hospedes();
 		}
 
 		function abastecer_carros() {
