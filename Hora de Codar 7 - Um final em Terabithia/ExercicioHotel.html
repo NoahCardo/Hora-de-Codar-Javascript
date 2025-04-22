@@ -18,6 +18,24 @@
 
 		var valor_diar, quant_dias, nome_hospede;
 
+		var quant_conv;
+
+		let aud_escolhido;
+
+		let dias_uteis = ["segunda", "terça", "quarta", "quinta", "sexta"];
+		var dia_escolhido;
+		let horario_escolhido;
+		var empresa;
+		let dias_finaisds = ["sabado", "domingo"];
+
+		let duracao_evento;
+
+		let garcons_necess;
+		let garcons_extras;
+
+		let custo_evento;
+		let custo_total_buffet;
+
 		function inicio() {
 
 			alert('👹🌈🔥 Bem-Vindo(a/e) ao HAZBIN HOTEL!~ 👹🌈🔥')
@@ -32,7 +50,7 @@
 			alert("Login Efetuado com Sucesso!~")
 
 			//Menu de Opções
-			var escolha = parseInt(prompt('Bem-Vindo(a/e) ao HAZBIN HOTEL, ' + nome + ', É um Imenso Prazer Ter Você por Aqui!~\nSelecione uma Opção: \n1.) Reserva de Quartos \n2.) Cadastro de Hóspedes \n3.) Abastecimento de Carros \n4.) Sair'));
+			var escolha = parseInt(prompt('Bem-Vindo(a/e) ao HAZBIN HOTEL, ' + nome + ', É um Imenso Prazer Ter Você por Aqui!~\nSelecione uma Opção: \n1.) Reserva de Quartos \n2.) Cadastro de Hóspedes \n3.) Abastecimento de Carros \n4.) Eventos do 👹🌈🔥 HAZBIN HOTEL 👹🌈🔥 \n5.) Manutenção de Ar-Condicionados \n6.) Sair'));
 
 			switch (escolha) {
 				case 1:
@@ -45,10 +63,13 @@
 					abastecer_carros();
 					break;
 				case 4:
-					sair();
+					eventos_hazbin();
 					break;
 				case 5:
-					eventos_hazbin();
+					manutencao_ar_cond();
+				case 6:
+					sair();
+					break;
 				default:
 					erro();
 			}
@@ -216,14 +237,16 @@
 			sistema_cadastrar_hospedes();
 		}
 
+		//⬇ 👹🌈🔥👹🌈🔥👹🌈🔥 Seção de Eventos do HAZBIN HOTEL! 👹🌈🔥👹🌈🔥👹🌈🔥 ⬇
+
 		function eventos_hazbin() {
 			alert('HAZBIN HOTEL - EVENTOS');
 
-			let aud_laranja = 150;
+			aud_laranja = 150;
 			var max_cadeiras = 70;
-			let aud_colorado = 350;
+			aud_colorado = 350;
 
-			var quant_conv = parseInt(prompt("Qual o Número de Convidados Para o Seu Evento?"))
+			quant_conv = parseInt(prompt("Qual o Número de Convidados Para o Seu Evento?"))
 
 			while (quant_conv <= 0 || quant_conv > 350 || quant_conv === "" || isNaN(quant_conv)) {
 				quant_conv = parseInt(prompt("Quantidade de Convidados Inválida, Inferior ou Superior À Capacidade Máxima do Auditório; Por Favor, Tente Outra Vez...\nQual o Número de Convidados Para o Seu Evento?"))
@@ -231,11 +254,14 @@
 
 			if (quant_conv <= aud_laranja) {
 				alert("Use o Auditório 🍊 Laranja 🍊; Ele É o Mais Apropriado Para o Seu Evento!")
+				aud_escolhido = "Auditório 🍊 Laranja 🍊";
 			} else if (quant_conv > aud_laranja && quant_conv <= aud_laranja + max_cadeiras) {
 				let cadeiras_extras = quant_conv - aud_laranja;
 				alert("Use o Auditório 🍊 Laranja 🍊; Ele É o Mais Apropriado Para o Seu Evento! (Inclua Mais " + cadeiras_extras + " Cadeiras)")
+				aud_escolhido = "Auditório 🍊 Laranja 🍊";
 			} else if (quant_conv > aud_laranja && quant_conv <= aud_colorado) {
 				alert("Use o Auditório 🫧 Colorado 🫧; Ele É o Mais Apropriado Para o Seu Evento!")
+				aud_escolhido = "Auditório 🫧 Colorado 🫧";
 			}
 
 			alert("Agora Vamos Ver a Agenda do Evento?")
@@ -246,28 +272,105 @@
 		function agenda_eventos() {
 			alert('HAZBIN HOTEL - AGENDA DE EVENTOS');
 
-			let dias_uteis = ["segunda", "terça", "quarta", "quinta", "sexta"];
-			let dias_finalds = ["sabado", "domingo"];
+			dias_uteis = ["segunda", "terça", "quarta", "quinta", "sexta"];
+			dias_finaisds = ["sabado", "domingo"];
 
-			var dia_escolhido = String(prompt("Qual o Dia do Seu Evento? (Digite o Dia da Semana)")).toLowerCase();
+			dia_escolhido = String(prompt("Qual o Dia do Seu Evento? (Digite o Dia da Semana)")).toLowerCase();
 
-			while (!dias_uteis.includes(dia_escolhido) || !dias_finalds.includes(dia_escolhido) || dia_escolhido === "" || Number(dia_escolhido)) {
+			while (!dias_uteis.includes(dia_escolhido) && !dias_finaisds.includes(dia_escolhido)) {
 				dia_escolhido = String(prompt("Dia Inválido, " + nome + "; Por Favor, Tente Outra Vez...\nQual o Dia do Seu Evento? (Digite o Dia da Semana)")).toLowerCase();
 			}
 
-			var horario_escolhido = parseInt(prompt("Qual o Horário do Seu Evento? (Despreze Minutos e Segundos)"))
+			horario_escolhido = parseInt(prompt("Qual o Horário do Seu Evento? (Despreze Minutos e Segundos)"));
 
-			if (dias_uteis.includes(dia_escolhido) && horario_escolhido >= 7 && horario_escolhido < 23) {
-				alert("O Dia do Seu Evento É um Dia Útil e o Horário Está Disponível!")
+			while (isNaN(horario_escolhido) || horario_escolhido < 7 || horario_escolhido > 23) {
+				horario_escolhido = parseInt(prompt("Horário Inválido. Por Favor, Tente Outra Vez...\nQual o Horário do Seu Evento? (Despreze Minutos e Segundos)"));
 			}
 
+			var disponivel = false;
 
+			if (dias_uteis.includes(dia_escolhido) && horario_escolhido >= 7 && horario_escolhido < 23) {
+				disponivel = true;
+			} else if (dias_finaisds.includes(dia_escolhido) && horario_escolhido >= 7 && horario_escolhido < 15) {
+				disponivel = true;
+			}
 
+			if (disponivel) {
+				empresa = String(prompt("Qual o Nome da Empresa?"));
+				while (empresa === "" || Number(empresa)) {
+					empresa = String(prompt("Por Favor, Informe-nos um Nome!"))
+				}
+				alert(`Auditório Reservado Para ${empresa}, ${dia_escolhido} às ${horario_escolhido}hrs.`);
+			} else {
+				alert("Auditório Indisponível.");
+			}
 
-
+			garcons();
 		}
 
+		function garcons() {
+			alert("HAZBIN HOTEL - SERVIÇO DE GARÇONS");
 
+			duracao_evento = parseInt(prompt("Qual a Duração do Evento em Horas? (Despreze Minutos e Segundos)"));
+
+			while (isNaN(duracao_evento) || duracao_evento <= 0) {
+				duracao_evento = parseInt(prompt("Duração Inválida! Por Favor, Tente Outra Vez...\nQual a Duração do Evento em Horas? (Despreze Minutos e Segundos)"));
+			}
+
+			garcons_necess = Math.ceil(quant_conv / 12);
+			//Math.ceil(); "Ceil" Vem de "Ceiling"; "Teto". Este Arredonda Números para Cima.
+			//O Seu Oposto Seria Math.floor(); "Floor" Vem de "Chão"; Este Arredonda Números para Baixo
+			garcons_extras = Math.floor(duracao_evento / 2);
+			garcons_necess += garcons_extras;
+
+			custo_evento = garcons_necess * 10.50 * duracao_evento;
+
+			alert(`São Necessários ${garcons_necess} Garçons.\nO Custo Total do Evento Equivale A R$ ${custo_evento.toFixed(2)}\n`)
+
+			alert("Agora, Vamos Calcular o Custo do Buffet do Hotel para o Evento?")
+
+			buffet();
+		}
+
+		function buffet() {
+			alert("HAZBIN HOTEL - BUFFET");
+
+			//Cálculo por Convidado
+			let litros_cafe = quant_conv * 0.2;
+			let litros_agua = quant_conv * 0.5;
+			let salgados = quant_conv * 7;
+
+			//Cálculo dos Custos
+			let custo_cafe = litros_cafe * 0.80;
+			let custo_agua = litros_agua * 0.40;
+			let custo_salgados = Math.ceil(salgados / 100) * 34;
+
+			custo_total_buffet = custo_cafe + custo_agua + custo_salgados;
+
+			alert(`O Evento Precisará de ${litros_cafe.toFixed(1)} Litros de Café, ${litros_agua.toFixed(1)} Litros de Água e de ${salgados} Salgados!\n\n
+			Evento no ${aud_escolhido}.\n\n
+			Nome da Empresa: ${empresa};\n
+			Data do Evento: ${dia_escolhido} às ${horario_escolhido}hrs;\n
+			Duração do Evento: ${duracao_evento} hrs;\n
+			Quantidade de Garçons: ${garcons_necess};\n
+			Quantidade de Convidados: ${quant_conv}.\n
+			Custo dos Garçons: R$ ${custo_evento.toFixed(2)};\n
+			Custo do Buffet: R$ ${custo_total_buffet.toFixed(2)}.`)
+
+			alert(`Valor Total do Evento: R$ ${(custo_evento + custo_total_buffet).toFixed(2)}.`);
+
+			let confirm_reserva = prompt("Gostaria de Efetuar a Reserva? (Digite 'S' para 'Sim' ou 'N' para 'Não')").toLowerCase();
+
+			if (confirm_reserva === "s") {
+				alert(nome + ", Reserva Efetuada com Sucesso!~");
+			} else {
+				alert("Reserva não Efetuada.");
+			}
+
+			inicio();
+		}
+
+		//⬆ 👹🌈🔥👹🌈🔥👹🌈🔥 Seção de Eventos do HAZBIN HOTEL! 👹🌈🔥👹🌈🔥👹🌈🔥 ⬆
 
 		function pesquisar_hospedes() {
 			alert('HAZBIN HOTEL - PESQUISA DE HÓSPEDES');
@@ -289,6 +392,99 @@
 
 		function abastecer_carros() {
 			alert('HAZBIN HOTEL - ABASTECER');
+
+			//⬇ Posto Wayne Oil ⬇
+			let alcool_wayne = parseFloat(prompt("Qual o Valor do Álcool no Posto Wayne Oil?"));
+			while (alcool_wayne <= 0 || alcool_wayne === "" || isNaN(alcool_wayne)) {
+				alcool_wayne = parseFloat(prompt("Valor Inválido, " + nome + "; Por Favor, Tente Outra Vez...\nQual o Valor do Álcool no Posto Wayne Oil?"))
+			}
+
+			let gasolina_wayne = parseFloat(prompt("Qual o Valor da Gasolina no Posto Wayne Oil?"));
+			while (gasolina_wayne <= 0 || gasolina_wayne === "" || isNaN(gasolina_wayne)) {
+				gasolina_wayne = parseFloat(prompt("Valor Inválido, " + nome + "; Por Favor, Tente Outra Vez...\nQual o Valor da Gasolina no Posto Wayne Oil?"))
+			}
+
+			//⬇ Posto Stark Petrol ⬇
+			let alcool_stark = parseFloat(prompt("Qual o Valor do Álcool no Posto Stark Petrol?"));
+			while (alcool_stark <= 0 || alcool_stark === "" || isNaN(alcool_stark)) {
+				alcool_stark = parseFloat(prompt("Valor Inválido, " + nome + "; Por Favor, Tente Outra Vez...\nQual o Valor do Álcool no Posto Stark Petrol?"))
+			}
+
+			let gasolina_stark = parseFloat(prompt("Qual o Valor da Gasolina no Posto Stark Petrol?"));
+			while (gasolina_stark <= 0 || gasolina_stark === "" || isNaN(gasolina_stark)) {
+				gasolina_stark = parseFloat(prompt("Valor Inválido, " + nome + "; Por Favor, Tente Outra Vez...\nQual o Valor da Gasolina no Posto Stark Petrol?"))
+			}
+
+			//Capacidade do Tanque do Carro
+			let capacidade_tanque = 42;
+
+			//Calculando os Custos nos Postos
+			let custoAlcool_wayne = alcool_wayne * capacidade_tanque;
+			let custoGasolina_wayne = gasolina_wayne * capacidade_tanque;
+			let custoAlcool_stark = alcool_stark * capacidade_tanque;
+			let custoGasolina_stark = gasolina_stark * capacidade_tanque;
+
+			//Verificando se o Álcool É ou Não 30% Mais Barato que a Gasolina
+			let alcool_wayneMaisBarato = alcool_wayne <= gasolina_wayne * 0.7;
+			let alcool_starkMaisBarato = alcool_stark <= gasolina_stark * 0.7;
+
+			//Determinando o Combustível e Posto Mais Baratos
+			let melhor_opcao;
+			if (alcool_wayneMaisBarato && custoAlcool_wayne < custoGasolina_wayne && custoAlcool_wayne < custoGasolina_stark && custoAlcool_wayne < custoAlcool_stark) {
+				melhor_opcao = `Álcool no Posto Wayne Oil por R$ ${custoAlcool_wayne.toFixed(2)}`;
+			} else if (alcool_starkMaisBarato && custoAlcool_stark < custoGasolina_wayne && custoAlcool_stark < custoGasolina_stark && custoAlcool_stark < custoAlcool_wayne) {
+				melhor_opcao = `Álcool no Posto Stark Petrol por R$ ${custoAlcool_stark.toFixed(2)}`;
+			} else if (custoGasolina_wayne < custoAlcool_wayne && custoGasolina_wayne < custoGasolina_stark && custoGasolina_wayne < custoAlcool_stark) {
+				melhor_opcao = `Gasolina no Posto Wayne Oil por R$ ${custoGasolina_wayne.toFixed(2)}`;
+			} else {
+				melhor_opcao = `Gasolina no Posto Stark Petrol por R$ ${custoGasolina_stark.toFixed(2)}`;
+			}
+
+			alert(`${nome}, é Mais Barato Abastecer com ${melhor_opcao}.`);
+
+			inicio();
+		}
+
+		function manutencao_ar_cond() {
+			alert("HAZBIN HOTEL - MANUTENÇÃO DE AR-CONDICIONADOS");
+
+			let continuar = "S";
+			let menorOrcamento = Infinity;
+			let empresaMenorOrcamento = "";
+
+			while (continuar.toUpperCase() === "S") {
+				// Coletando dados da empresa
+				let empresa = prompt("Qual o nome da empresa?");
+				let valorPorAparelho = parseFloat(prompt(`Qual o valor por aparelho (em R$) para a empresa ${empresa}?`));
+				let quantidadeAparelhos = parseInt(prompt(`Qual a quantidade de aparelhos em manutenção para a empresa ${empresa}?`));
+				let desconto = parseFloat(prompt(`Qual a porcentagem de desconto (em %) para a empresa ${empresa}?`));
+				let quantidadeMinimaDesconto = parseInt(prompt(`Qual o número mínimo de aparelhos para obter o desconto para a empresa ${empresa}?`));
+
+				// Calculando o custo total
+				let valorTotal = valorPorAparelho * quantidadeAparelhos;
+
+				// Aplicando o desconto, se necessário
+				if (quantidadeAparelhos >= quantidadeMinimaDesconto) {
+					let valorDesconto = valorTotal * (desconto / 100);
+					valorTotal -= valorDesconto; // Subtraindo o desconto
+				}
+
+				// Exibindo o custo total para a empresa
+				alert(`O serviço de ${empresa} custará R$ ${valorTotal.toFixed(2)}.`);
+
+				// Verificando se este é o menor orçamento
+				if (valorTotal < menorOrcamento) {
+					menorOrcamento = valorTotal;
+					empresaMenorOrcamento = empresa;
+				}
+
+				// Perguntando ao usuário se deseja continuar
+				continuar = prompt("Deseja informar novos dados? (S/N)").toUpperCase();
+			}
+
+			// Exibindo o orçamento de menor valor
+			alert(`O orçamento de menor valor é o de ${empresaMenorOrcamento} por R$ ${menorOrcamento.toFixed(2)}.`);
+
 			inicio();
 		}
 
@@ -300,7 +496,7 @@
 		function sair() {
 			var confirma = confirm('Você deseja sair?');
 			if (confirma) {
-				alert('Muito Obrigado e Até Logo,' + nome + '!')
+				alert('Muito Obrigado e Até Logo, ' + nome + '!')
 				window.close();
 			} else {
 				inicio();
